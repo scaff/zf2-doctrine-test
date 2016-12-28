@@ -6,6 +6,8 @@ PASSWORD='assessfirst'
 
 sudo apt-get install python-software-properties software-properties-common
 sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
+sudo apt-get install php-xml
+sudo apt-get install php7.0-mbstring
 # update / upgrade
 sudo apt-get update
 
