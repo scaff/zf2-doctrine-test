@@ -12,7 +12,7 @@ Installation
 - simply launch the box : vagrant up
 - you can connect to the box with ssh : vagrant ssh
 - install mysql database 'album_doctrine'
-- install depdencies: php composer.phar install
+- install depdencies: php composer.phar self-update && php composer.phar install
 - update your database schema with doctrine-module
 
 your env is up to go at 192.168.33.22
