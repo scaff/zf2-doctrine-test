@@ -7,11 +7,11 @@ This is a Dcotrine ZF2 test
 
 Installation
 ------------
-First clone this repository
-You need to install vagrant https://www.vagrantup.com/downloads.html
-simply launch the box : vagrant up
-you can connect to the box with ssh : vagrant ssh
-install mysql database 'album_doctrine'
+- First clone this repository
+- You need to install vagrant https://www.vagrantup.com/downloads.html
+- simply launch the box : vagrant up
+- you can connect to the box with ssh : vagrant ssh
+- install mysql database 'album_doctrine'
 install depdencies: php composer.phar install
 update your database schema with doctrine-module
 
