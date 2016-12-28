@@ -5,8 +5,8 @@ return array(
         'connection' => array(
             'orm_default' => array(
                 'params' => array(
-                    'user'     => 'USERNAME',
-                    'password' => 'PASSWORD',
+                    'user'     => 'root',
+                    'password' => 'assessfirst',
                 )
             )
         )
