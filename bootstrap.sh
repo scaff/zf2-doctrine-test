@@ -6,8 +6,6 @@ PASSWORD='assessfirst'
 
 sudo apt-get install python-software-properties software-properties-common
 sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
-sudo apt-get install php-xml
-sudo apt-get install php7.0-mbstring
 # update / upgrade
 sudo apt-get update
 
@@ -22,6 +20,8 @@ sudo debconf-set-selections <<< "mysql-server mysql-server/root_password passwor
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $PASSWORD"
 sudo apt-get -y install mysql-server
 sudo apt-get install php7.0-mysql
+sudo apt-get install -y php-xml
+sudo apt-get install -y php7.0-mbstring
 
 # setup hosts file
 VHOST=$(cat <<EOF
