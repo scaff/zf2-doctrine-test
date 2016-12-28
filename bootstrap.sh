@@ -5,10 +5,10 @@ PASSWORD='assessfirst'
 
 
 sudo add-apt-repository ppa:ondrej/php5-5.6
-
+sudo apt-get install python-software-properties
 # update / upgrade
 sudo apt-get update
-sudo apt-get install python-software-properties
+
 sudo apt-get -y upgrade
 
 # install apache 2.5 and php 5.5
