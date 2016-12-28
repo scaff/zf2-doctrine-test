@@ -3,7 +3,7 @@ ZF2 Doctrine Test
 
 Introduction
 ------------
-This is a learning exercise for me in using Doctrine ORM with Zend Framework 2.
+This is a Dcotrine ZF2 test
 
 Installation
 ------------
