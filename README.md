@@ -13,7 +13,8 @@ Installation
 - install depdencies: ./composer.phar self-update && ./composer.phar install
 - you can connect to the box with ssh : vagrant ssh
 - create mysql database 'album_doctrine'
-- update your database schema with doctrine-module
+- From your box source code is under /vagrant
+- update your database schema with doctrine-module (/vagrant/vendor/bin/doctrine-module)
 
 your env is up to go at 192.168.33.22
 
