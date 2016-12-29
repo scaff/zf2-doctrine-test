@@ -10,9 +10,9 @@ Installation
 - First clone this repository
 - You need to install vagrant https://www.vagrantup.com/downloads.html
 - simply launch the box : vagrant up
+- install depdencies: ./composer.phar self-update && ./composer.phar install
 - you can connect to the box with ssh : vagrant ssh
-- install mysql database 'album_doctrine'
-- install depdencies: php composer.phar self-update && php composer.phar install
+- create mysql database 'album_doctrine'
 - update your database schema with doctrine-module
 
 your env is up to go at 192.168.33.22
