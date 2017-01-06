@@ -3,7 +3,7 @@ ZF2 Doctrine Test
 
 Introduction
 ------------
-This is a Dcotrine ZF2 test
+This is a Doctrine ZF2 test
 
 Installation
 ------------
