@@ -18,7 +18,7 @@ Installation
 
 your env is up to go at 192.168.33.22
 
-You have to make a relationship between album entity and the new created artist entity (id, label)
-im the form album make a dropdown list of artist
+ - You have to make a relationship between album entity and the new created artist entity (id, label)
+ - In the form album make a dropdown list of artist
 
 make doctrine pagination in album list
