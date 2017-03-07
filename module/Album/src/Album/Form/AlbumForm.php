@@ -3,28 +3,38 @@ namespace Album\Form;
 
 use Zend\Form\Form;
 
-class AlbumForm extends Form
+use DoctrineModule\Persistence\ObjectManagerAwareInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+
+class AlbumForm extends Form implements ObjectManagerAwareInterface
 {
-    public function __construct($name = null)
+	protected $objectManager;
+    public function __construct(ObjectManager $objectManager, $name = null)
     {
         // we want to ignore the name passed
         parent::__construct('album');
         $this->setAttribute('method', 'post');
+
+		$this->objectManager = $objectManager;
+		//$hydrator = new DoctrineHydrator($entityManager, '\Album\Entity\Artist');
+		//$this->setHydrator($hydrator);
+
+
         $this->add(array(
             'name' => 'id',
             'attributes' => array(
                 'type'  => 'hidden',
             ),
         ));
-        $this->add(array(
+        $this->add([
+            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
             'name' => 'artist',
-            'attributes' => array(
-                'type'  => 'text',
-            ),
-            'options' => array(
-                'label' => 'Artist',
-            ),
-        ));
+            'options' => [
+                'object_manager' => $this->getObjectManager(),
+                'target_class'   => 'Album\Entity\Artist',
+                'property'       => 'label',
+            ],
+        ]);
         $this->add(array(
             'name' => 'title',
             'attributes' => array(
@@ -42,5 +52,15 @@ class AlbumForm extends Form
                 'id' => 'submitbutton',
             ),
         ));
+    }
+
+    public function setObjectManager(ObjectManager $objectManager)
+    {
+        $this->objectManager = $objectManager;
+    }
+
+    public function getObjectManager()
+    {
+        return $this->objectManager;
     }
 }

@@ -7,6 +7,8 @@ use Doctrine\ORM\EntityManager;
 use Album\Entity\Album;
 use Album\Form\AlbumForm;
 
+use Doctrine\ORM\Tools\Pagination\Paginator;
+
 class AlbumController extends AbstractActionController
 {
     /**   
@@ -38,16 +40,23 @@ class AlbumController extends AbstractActionController
      */
     public function indexAction()
     {
+    	$page = $this->params()->fromRoute('page') ? (int) $this->params()->fromRoute('page') : 0;
+
+    	$albumRepo = $this->getEntityManager()->getRepository('Album\Entity\Album');
+
+		$albums = $albumRepo->fetchPaginated(5*$page);
+		$nbPage = $albumRepo->getNbPages();
         return new ViewModel(
             array(
-                'albums' => $this->getEntityManager()->getRepository('Album\Entity\Album')->findAll() 
+            	'albums' => $albums,
+				'nbPage' => $nbPage
             )
         );
     }
 
     public function addAction()
     {
-        $form = new AlbumForm();
+        $form = new AlbumForm($this->getEntityManager());
         $form->get('submit')->setValue('Add');
 
         $request = $this->getRequest();
@@ -78,7 +87,7 @@ class AlbumController extends AbstractActionController
         }
         $album = $this->getEntityManager()->find('Album\Entity\Album', $id);
 
-        $form  = new AlbumForm();
+        $form  = new AlbumForm($this->getEntityManager());
         $form->bind($album);
         $form->get('submit')->setAttribute('value', 'Edit');
 

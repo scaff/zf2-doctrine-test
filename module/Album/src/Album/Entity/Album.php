@@ -6,18 +6,19 @@ use Doctrine\ORM\Mapping as ORM;
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\Factory as InputFactory;
 use Zend\InputFilter\InputFilterAwareInterface;
-use Zend\InputFilter\InputFilterInterface; 
+use Zend\InputFilter\InputFilterInterface;
+
 
 /**
  * A music album.
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Album\Entity\Repository\AlbumRepository")
  * @ORM\Table(name="album")
  * @property string $artist
  * @property string $title
  * @property int $id
  */
-class Album implements InputFilterAwareInterface 
+class Album implements InputFilterAwareInterface
 {
     protected $inputFilter;
 
@@ -29,7 +30,9 @@ class Album implements InputFilterAwareInterface
     protected $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\ManyToOne(targetEntity="Artist")
+     * @ORM\JoinColumn(name="artist_id", referencedColumnName="id")
+     * @ORM\Column(type="integer")
      */
     protected $artist;
 
@@ -44,7 +47,7 @@ class Album implements InputFilterAwareInterface
      * @param string $property
      * @return mixed
      */
-    public function __get($property) 
+    public function __get($property)
     {
         return $this->$property;
     }
@@ -55,7 +58,7 @@ class Album implements InputFilterAwareInterface
      * @param string $property
      * @param mixed $value
      */
-    public function __set($property, $value) 
+    public function __set($property, $value)
     {
         $this->$property = $value;
     }
@@ -65,7 +68,7 @@ class Album implements InputFilterAwareInterface
      *
      * @return array
      */
-    public function getArrayCopy() 
+    public function getArrayCopy()
     {
         return get_object_vars($this);
     }
@@ -75,7 +78,7 @@ class Album implements InputFilterAwareInterface
      *
      * @param array $data
      */
-    public function populate($data = array()) 
+    public function populate($data = array())
     {
         $this->id = $data['id'];
         $this->artist = $data['artist'];
@@ -140,9 +143,67 @@ class Album implements InputFilterAwareInterface
                 ),
             )));
 
-            $this->inputFilter = $inputFilter;        
+            $this->inputFilter = $inputFilter;
         }
 
         return $this->inputFilter;
-    } 
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set artist
+     *
+     * @param string $artist
+     *
+     * @return Album
+     */
+    public function setArtist($artist)
+    {
+        $this->artist = $artist;
+
+        return $this;
+    }
+
+    /**
+     * Get artist
+     *
+     * @return string
+     */
+    public function getArtist()
+    {
+        return $this->artist;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return Album
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
 }
